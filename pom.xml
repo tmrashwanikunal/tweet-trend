@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -17,39 +17,35 @@
 
 	<properties>
 		<java.version>17</java.version>
-		 <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<spring-cloud.version>2023.0.0</spring-cloud.version>
 	</properties>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.kohsuke/github-api -->
 		<dependency>
-		    <groupId>org.kohsuke</groupId>
-		    <artifactId>github-api</artifactId>
-		    <version>1.99</version>
+			<groupId>org.kohsuke</groupId>
+			<artifactId>github-api</artifactId>
+			<version>1.99</version>
 		</dependency>
-		 <!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core -->
 		<dependency>
-		    <groupId>org.twitter4j</groupId>
-		    <artifactId>twitter4j-core</artifactId>
-		    <version>3.0.6</version>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>3.0.6</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
-        
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -69,25 +65,27 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 
-	
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
+			
+			<!-- ******************************************************** -->
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.2.5</version>
 				<configuration>
 					<argLine>${argLine} -Xmx2048m</argLine>
 				</configuration>
@@ -113,15 +111,17 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<!-- ******************************************************** -->
+			
 		</plugins>
 	</build>
-
+	
 	<distributionManagement>
 		<repository>
 			<id>dev</id>
 			<url>file://jarstaging</url>
 		</repository>
 	</distributionManagement>
-
 
 </project>
