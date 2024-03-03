@@ -12,7 +12,17 @@ pipeline {
     stages {
         stage("build"){
             steps{
-                sh 'mvn clean deploy'
+                echo "**************Build Start*****************"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                echo "**************Build Success*****************"
+            }
+        }
+
+        stage("test"){
+            steps{
+                echo "**************Unit Test Start*****************"
+                sh 'mvn surefire-report:report'
+                echo "**************Unit Test Success*****************"
             }
         }
 
