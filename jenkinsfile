@@ -12,8 +12,30 @@ pipeline {
     stages {
         stage("build"){
             steps{
-                sh 'mvn clean deploy'
+                echo "**************Build Start*****************"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                echo "**************Build Success*****************"
             }
         }
+
+        stage("test"){
+            steps{
+                echo "**************Unit Test Start*****************"
+                sh 'mvn surefire-report:report'
+                echo "**************Unit Test Success*****************"
+            }
+        }
+
+        stage('SonarQube analysis') {
+            environment{
+                scannerHome = tool 'valaxy-sonar-scanner'
+            }
+            steps{
+                // If you have configured more than one global server connection, you can specify its name
+                withSonarQubeEnv('valaxy-sonarqube-server') {  
+                        sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        } 
     }
 }
